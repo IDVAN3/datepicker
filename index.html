@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- Оболочка документа -->
+<html lang="ru">
+
+<!-- Заголовок страницы, контейнер для других важных данных (не отображается) -->
+
+<head>
+    <title>Главная</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <link rel="shortcut icon" href="img/icons/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div class="wrapper">
+        <div class="content">
+<!-- HEADER -->
+<!-- /HEADER -->
+            <div class="date-picker">
+                <div class="selected-date"></div>
+
+                <div class="dates">
+                    <div class="month">
+                        <div class="date-arrows prev-mth">&lt</div>
+                        <div class="mth"></div>
+                        <div class="date-arrows next-mth">&gt</div>
+                    </div>
+
+                    <div class="days">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- FOOTER -->
+
+<!-- /FOOTER -->    </div>
+    <!-- /WRAPPER -->
+
+ <!-- попап -->
+    <div class="popup js-popup" data-id-popup="popup-0">
+        <div class="popup__opas"></div>
+        <div class="popup__wrapp js-popup__wrapp">
+            <span class="popup__close js-popup__close"></span>
+            <div class="popup-container">
+                <h2 class="popup-title">Попап</h2>
+            </div>
+        </div>
+    </div>
+ <!-- кнопка прокрутки вверх -->
+ <div class="wrapper-scroll lock-padding">
+    <div class="scroll-up js-scroll-up">
+        <svg class="scroll-up__svg" viewBox="-2 -2 52 52">
+            <path class="scroll-up__path js-scroll-up__path" d="M24,0 a24,24 0 0,1 0,48 a24,24 0 0,1 0,-48"/>
+        </svg>
+    </div>
+</div>
+    
+    <!-- Подключеине скриптов -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

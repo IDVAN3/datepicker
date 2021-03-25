@@ -1,0 +1,2 @@
+Версия v3.4.1
+Ссылка для подключения из вне https://code.jquery.com/jquery-3.4.1.min.js

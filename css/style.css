@@ -1,0 +1,456 @@
+@charset "UTF-8";
+/* обнуление общих параметров */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+aside,
+nav,
+section,
+header,
+footer {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  min-width: 360px;
+  width: 100%;
+  background: #fff;
+  color: #000;
+}
+
+input,
+button,
+textarea {
+  font-family: "";
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* / обнуление общих параметров */
+body {
+  line-height: 1.25;
+  font-size: 14px;
+  font-family: "";
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body.lock-scroll {
+  overflow-y: hidden;
+}
+
+body.lock {
+  overflow-y: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+/*=== NATIVE DATERANGEPICKER ===*/
+.date-picker {
+  z-index: 50;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  background: #fff;
+  margin: 0 auto;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  -webkit-user-select: none;
+          user-select: none;
+}
+.date-picker:hover {
+  background-color: #f3f3f3;
+}
+.date-picker .selected-date {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #313131;
+  font-size: 28px;
+}
+.date-picker .dates {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+}
+.date-picker .dates.active {
+  display: block;
+}
+.date-picker .dates .month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+}
+.date-picker .dates .month .date-arrows {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #313131;
+  font-size: 20px;
+}
+.date-picker .dates .month .date-arrows:hover {
+  background-color: #f3f3f3;
+}
+.date-picker .dates .month .date-arrows:active {
+  background-color: #00ca85;
+}
+.date-picker .dates .days {
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.date-picker .dates .days .day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #313131;
+}
+.date-picker .dates .days .day.selected {
+  background-color: #00ca85;
+}
+
+/*=== NATIVE DATERANGEPICKER ===*/
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.row {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.none {
+  display: none !important;
+}
+
+.body-fixed {
+  position: fixed;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ibg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.ibg img.ibg-img {
+  display: none;
+}
+
+li.counter {
+  list-style-type: none;
+  counter-reset: item;
+}
+li.counter li {
+  position: relative;
+  padding: 0px 0px 0px 45px;
+}
+li.counter li:before {
+  counter-increment: item;
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #818181;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 26px;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #4274bb;
+}
+
+.video {
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+.video video,
+.video iframe,
+.video object,
+.video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.videobg video,
+.videobg iframe,
+.videobg object,
+.videobg embed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* === HEADER === */
+/* === /HEADER === */
+input.error,
+textarea.error {
+  border-color: red;
+}
+
+/* === FOOTER === */
+/* === /FOOTER === */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.popup__opas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup__wrapp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 3px;
+  z-index: 9999;
+  padding: 20px 20px 0px 20px;
+  max-width: 460px;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.popup__close {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  top: -5px;
+  right: 0px;
+  transition: 0.4s;
+  cursor: pointer;
+  z-index: 3;
+}
+.popup__close::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 3px;
+  width: 15px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(45deg);
+}
+.popup__close::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 3px;
+  width: 15px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.8);
+  transform: rotate(-45deg);
+}
+.popup__close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.popup-container {
+  position: relative;
+  top: -20px;
+}
+
+.wrapper-scroll {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+}
+
+.scroll-up {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.4s ease 0s;
+  transform: translateY(25px);
+  opacity: 0;
+  visibility: hidden;
+}
+.scroll-up:before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 3px solid #DE8045;
+  width: 10px;
+  height: 10px;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  transition: inherit;
+  opacity: 0.6;
+}
+.scroll-up__path {
+  box-sizing: border-box;
+  fill: none;
+  stroke: #DE8045;
+  stroke-width: 3px;
+  transition: all 0.4s ease 0s;
+}
+.scroll-up.scroll-up_active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-up:hover:before {
+  border-color: #DE8045;
+  opacity: 1;
+}
+
+@media (max-width: 1200px) {
+  /**/
+}
+@media (max-width: 1024px) {
+  /**/
+}
+@media (max-width: 992px) {
+  /**/
+}
+@media (max-width: 768px) {
+  /**/
+}
+@media (max-width: 480px) {
+  /**/
+}
+@media (max-width: 360px) {
+  /**/
+}
