@@ -2,92 +2,6 @@
 'use strict'
 $(document).ready(function () {
 
-    /* === IBG === */
-
-    function ibg() {
-      $.each($('.ibg'), function (index, val) {
-          if ($(this).find('img').length > 0) {
-              let src_img = $(this).find('img').attr('src');
-              $(this).css('backgroundImage', 'url("' + src_img + '")');
-          }
-      });
-  }
-
-  ibg();
-
-  /* === /IBG === */
-
-    /* === POPUP === */
-
-    let unlock = true;
-      const timeout = 300;
-      const body = document.querySelector("body");
-      const lockPadding = document.querySelectorAll(".lock-padding");
-      
-      function bodyLock() {
-        const lockPaddingValue =
-          window.innerWidth - document.querySelector(".wrapper").offsetWidth + "px";
-        if (lockPadding.length > 0) {
-          for (let i = 0; i < lockPadding.length; i++) {
-            const el = lockPadding[i];
-            el.style.paddingRight = lockPaddingValue;
-          }
-        }
-        body.style.paddingRight = lockPaddingValue;
-        body.classList.add("lock-scroll");
-      
-        unlock = false;
-        setTimeout(function () {
-          unlock = true;
-        }, timeout);
-      }
-      
-      function bodyUnlock() {
-        setTimeout(function () {
-          for (let i = 0; i < lockPadding.length; i++) {
-            const el = lockPadding[i];
-            el.style.paddingRight = "0px";
-          }
-          body.style.paddingRight = "0px";
-          body.classList.remove("lock-scroll");
-        }, timeout);
-      
-        unlock = false;
-        setTimeout(function () {
-          unlock = true;
-        }, timeout);
-      }
-
-    function openPopup(id) {
-        bodyLock(); 
-        $(`.js-popup[data-id-popup='${id}']`).fadeIn(300);
-      }
-      
-      function closePopup() {
-        bodyUnlock();
-        $(".js-popup").fadeOut(300);
-      }
-      
-      $(".js-popup__close").click(closePopup);
-      
-      $(".js-btn-popup").click(function (e) {
-        e.preventDefault();
-        let indexBtnPopup = $(this).attr("href");
-
-        openPopup(indexBtnPopup);
-      });
-      
-      $(".js-popup").click(function (e) {
-        let popup = $(".js-popup__wrapp");
-        
-        if (!popup.is(e.target) && popup.has(e.target).length === 0) {
-          closePopup();
-        }
-      });
-
-      /* === /POPUP === */
-
-
       /*=== NATIVE DATERANGEPICKER ===*/
   const date_picker_element = document.querySelector('.date-picker');
   const selected_date_element = document.querySelector('.date-picker .selected-date');
@@ -95,11 +9,12 @@ $(document).ready(function () {
   const mth_element = document.querySelector('.date-picker .dates .month .mth');
   const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
   const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
+  const week_element = document.querySelector('.week');
 
   const days_element = document.querySelector('.date-picker .dates .days');
 
   const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июль', 'Июнь', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-
+  const week = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
   let date = new Date();
   let day = date.getDate();
   let month = date.getMonth();
@@ -116,6 +31,7 @@ $(document).ready(function () {
   selected_date_element.dataset.value = selectedDate;
 
   populateDates();
+  populateWeek();
 
   // EVENT LISTENERS
   date_picker_element.addEventListener('click', toggleDatePicker);
@@ -152,15 +68,38 @@ $(document).ready(function () {
     populateDates();
   }
 
+  function populateWeek(e) {
+    for(let i = 0; i < 7; i++) {
+      
+      const week_elem = document.createElement('div');
+      week_elem.classList.add('week-day');
+      week_elem.textContent = week[i];
+      week_element.appendChild(week_elem);
+    }
+  }
+
   function populateDates(e) {
     days_element.innerHTML = '';
     let amount_days = 31;
-
+    
     if(month == 1) {
       amount_days = 28;
+      if(year % 4 == 0) {
+        amount_days = 29;
+      }
     }
-
+    else if(month == 3 || month == 5 || month == 8 || month == 10) {
+      amount_days = 30;
+    }
+    let selectedWeekDay = new Date(year + '-' + (month + 1) + '-' + 1);
+    let getSelectedWeekDay = selectedWeekDay.getDay();
+    console.log(getSelectedWeekDay)
+    for (let i = 1; i < getSelectedWeekDay; i++) {
+      const day_element = document.createElement('div');
+      days_element.appendChild(day_element);
+    }
     for (let i = 0; i < amount_days; i++) {
+      
       const day_element = document.createElement('div');
       day_element.classList.add('day');
       day_element.textContent = i + 1;
@@ -213,40 +152,3 @@ $(document).ready(function () {
   /*=== /NATIVE DATERANGEPICKER ===*/
 
 });
-/*кнопка прокрутки вверх*/
-
-const offset = 100;
-const scrollUp = document.querySelector('.js-scroll-up');
-const scrollUpSvgPath = document.querySelector('.js-scroll-up__path');
-const pathLength = scrollUpSvgPath.getTotalLength();
-
-scrollUpSvgPath.style.strokeDasharray = '\'' + pathLength + pathLength + '\'';
-scrollUpSvgPath.style.transition = 'stroke-dashoffset 20ms';
-
-// getTop
-const getTop = () => window.pageYOffset || document.documentElement.scrollTop;
-
-//updateDashoffset
-
-const updateDashoffset = () => {
-    const heigth = document.documentElement.scrollHeight - window.innerHeight;
-    const dashoffset = pathLength - (getTop() * pathLength / heigth);
-
-    scrollUpSvgPath.style.strokeDashoffset = dashoffset;
-}
-
-// onScroll
-window.addEventListener('scroll', () => {
-    updateDashoffset();
-    getTop() > offset ? scrollUp.classList.add('scroll-up_active') : scrollUp.classList.remove('scroll-up_active');
-});
-
-// click
-scrollUp.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-    });
-});
-
-/*скрол по якорю*/
