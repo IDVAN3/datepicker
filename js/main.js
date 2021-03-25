@@ -13,7 +13,7 @@ $(document).ready(function () {
 
   const days_element = document.querySelector('.date-picker .dates .days');
 
-  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июль', 'Июнь', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
   const week = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
   let date = new Date();
   let day = date.getDate();
@@ -92,8 +92,8 @@ $(document).ready(function () {
       amount_days = 30;
     }
     let selectedWeekDay = new Date(year + '-' + (month + 1) + '-' + 1);
-    let getSelectedWeekDay = selectedWeekDay.getDay();
-    console.log(getSelectedWeekDay)
+    let getSelectedWeekDay = getLocalDay(selectedWeekDay);
+    
     for (let i = 1; i < getSelectedWeekDay; i++) {
       const day_element = document.createElement('div');
       days_element.appendChild(day_element);
@@ -125,6 +125,16 @@ $(document).ready(function () {
   }
 
   // HELPER FUNCTION 
+  function getLocalDay(date) {
+
+    let day = date.getDay();
+  
+    if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
+      day = 7;
+    }
+  
+    return day;
+  }
   function checkEventPathForClass (path, selector) {
     for (let i = 0; i < path.length; i++) {
       if (path[i].classList && path[i].classList.contains(selector)) {
